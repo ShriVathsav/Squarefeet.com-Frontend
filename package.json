@@ -27,11 +27,11 @@
     "uuid4": "^2.0.2"
   },
   "scripts": {
-    "starts": "react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start": "node server"
+    "starts": "node server"
   },
   "eslintConfig": {
     "extends": "react-app"
