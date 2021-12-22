@@ -1,0 +1,35 @@
+/*ABOVE 990 PX*/
+@media only screen and (min-width: 990px) {
+    #search-bar-main {
+        margin: 60px;
+    }
+}
+
+/*BELOW 990 PX*/
+@media only screen and (max-width: 990px) {
+}
+
+/*ABOVE 767 PX*/
+@media only screen and (min-width: 767px) {
+}
+
+/*BELOW 767 PX*/
+@media only screen and (max-width: 767px) {
+    #search-bar-main {
+        margin: 60px 0px;
+    }
+    #search-button {
+        display: none;
+    }
+    #search-icon {
+        margin: 0px;
+    }
+}
+
+/*ABOVE 510 PX*/
+@media only screen and (min-width: 510px) {
+}
+
+/*BELOW 510 PX*/
+@media only screen and (max-width: 510px) {
+}

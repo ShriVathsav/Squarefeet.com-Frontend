@@ -1,0 +1,49 @@
+#card-image-2{
+    max-width: 370px;
+    max-height: 200px;
+}
+#card-image-3{
+    
+}
+/*ABOVE 990 PX*/
+@media only screen and (min-width: 990px){
+
+}
+
+/*BELOW 990 PX*/
+@media only screen and (max-width: 990px){
+    
+}
+
+/*ABOVE 767 PX*/
+@media only screen and (min-width: 767px){
+    #card-image-3{
+        height: 300px;
+    }
+}
+
+/*BELOW 767 PX*/
+@media only screen and (max-width: 767px){
+    #card-image-2{
+        max-height: 180px;
+    }
+    #card-image-3{
+        max-height: 220px;
+        max-width: 450px;
+    }
+}
+
+/*ABOVE 510 PX*/
+@media only screen and (min-width: 510px){
+    
+}
+
+/*BELOW 510 PX*/
+@media only screen and (max-width: 510px){
+    #card-image-2{
+        max-height: 150px;
+    }
+    #card-image-3{
+        max-height: 190px;
+    }
+}

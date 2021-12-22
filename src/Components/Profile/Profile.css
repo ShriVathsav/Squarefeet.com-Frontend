@@ -1,0 +1,50 @@
+
+/*ABOVE 990 PX*/
+@media only screen and (min-width: 990px){
+    #topic-font-3{
+        font-size: 18px;
+    }
+    #content-font-1{
+        font-size: 15px;
+    }
+}
+
+/*BELOW 990 PX*/
+@media only screen and (max-width: 990px){
+    #topic-font-3{
+        font-size: 18px;
+    }
+    #content-font-1{
+        font-size: 15px;
+    }
+}
+
+/*ABOVE 767 PX*/
+@media only screen and (min-width: 767px){
+
+}
+
+/*BELOW 767 PX*/
+@media only screen and (max-width: 767px){
+    #topic-font-3{
+        font-size: 17px;
+    }
+    #content-font-1{
+        font-size: 14px;
+    }
+}
+
+/*ABOVE 510 PX*/
+@media only screen and (min-width: 510px){
+    
+}
+
+/*BELOW 510 PX*/
+@media only screen and (max-width: 510px){
+    #topic-font-3{
+        font-size: 15px;
+    }
+    #content-font-1{
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,45 @@
+#action-button{
+    padding: 16px 0px;
+}
+
+/*ABOVE 990 PX*/
+@media only screen and (min-width: 990px){
+
+}
+
+/*BELOW 990 PX*/
+@media only screen and (max-width: 990px){
+
+}
+
+/*ABOVE 767 PX*/
+@media only screen and (min-width: 767px){
+    #modal{
+        width: 530px;
+    }
+    #action-button{
+        margin: 0px;
+    }
+}
+
+/*BELOW 767 PX*/
+@media only screen and (max-width: 767px){
+    #modal{
+        width: 500px;
+    }
+    #action-button{
+        margin: 0px 0px 14px 0px;
+    }
+}
+
+/*ABOVE 510 PX*/
+@media only screen and (min-width: 510px){
+
+}
+
+/*BELOW 510 PX*/
+@media only screen and (max-width: 510px){
+    #modal{
+        width: 360px;
+    }
+}

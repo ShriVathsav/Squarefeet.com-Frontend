@@ -1,0 +1,36 @@
+#page-title {
+    font-weight: bold;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 5px 15px 5px;
+    text-align: center;
+}
+
+/*ABOVE 990 PX*/
+@media only screen and (min-width: 990px) {
+}
+
+/*BELOW 990 PX*/
+@media only screen and (max-width: 990px) {
+}
+
+/*ABOVE 767 PX*/
+@media only screen and (min-width: 767px) {
+}
+
+/*BELOW 767 PX*/
+@media only screen and (max-width: 767px) {
+}
+
+/*ABOVE 510 PX*/
+@media only screen and (min-width: 510px) {
+}
+
+/*BELOW 510 PX*/
+@media only screen and (max-width: 510px) {
+    #page-title {
+        font-size: 20px;
+    }
+}
