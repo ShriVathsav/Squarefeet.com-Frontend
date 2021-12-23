@@ -31,9 +31,15 @@ const ImageViewerModal = (props) => {
 
     const {triggerObj} = props
 
+    useEffect(() => {
+        console.log(photos)
+        setImages(photos)
+        setFirstImage(photos[0])
+    }, [photos])
   
     const nextProperty = () => {
       let newIndex;
+      console.log(currentIndex, images.length)
       if(currentIndex !== images.length-1){
           newIndex = currentIndex+1;
           setCurrentIndex(newIndex)
@@ -43,7 +49,8 @@ const ImageViewerModal = (props) => {
 
     const prevProperty = () => {
         let newIndex;
-        if(currentIndex !== 0){
+        console.log(currentIndex, images.length)
+        if(currentIndex > 0){
             newIndex = currentIndex-1;
             setCurrentIndex(newIndex)
             setFirstImage(images[newIndex])
@@ -92,11 +99,11 @@ const ImageViewerModal = (props) => {
                     ribbon: true,
                     onClick: (e) => {e.stopPropagation(); setShortList(prev => !prev);}
                 }}
-                src={photos[0].path}
+                src={photos[0]}
             />
             <div style={{width: "100%", height: "15%", display: "flex", flexDirection: "row-reverse", alignItems: "center", bottom: 0,
                     cursor: "pointer",  backgroundColor: "black", opacity: 0.8, borderRadius: ".3125em", position: "absolute",  }} >
-                <span style={{color: "white", marginRight: 25}} >{images.length} {images.length === 1 ? "Photo": "Photos"}</span>
+                <span style={{color: "white", marginRight: 25}} >{photos.length} {photos.length === 1 ? "Photo": "Photos"}</span>
                 <Icon inverted name='picture' style={{marginRight: 7}}/>
             </div>
         </div>
@@ -115,11 +122,11 @@ const ImageViewerModal = (props) => {
                     ribbon: true,
                     onClick: (e) => {e.stopPropagation(); setShortList(prev => !prev);}
                 }}
-                src={photos[0].path}
+                src={photos[0]}
             />
             <div style={{width: "100%", height: "20%", display: "flex", flexDirection: "row-reverse", alignItems: "center", bottom: 0,
                     position: "absolute", backgroundColor: "black", opacity: 0.8, borderRadius: ".3125em", cursor: "pointer" }} >
-                <span style={{color: "white", marginRight: 25}} >{images.length} {images.length === 1 ? "Photo": "Photos"}</span>
+                <span style={{color: "white", marginRight: 25}} >{photos.length} {photos.length === 1 ? "Photo": "Photos"}</span>
                 <Icon inverted name='picture' style={{marginRight: 7}}/>
             </div>
         </div>
@@ -134,6 +141,8 @@ const ImageViewerModal = (props) => {
       })
     }, [])
 
+    useEffect(() => console.log(firstImage, "FIRST IMAGE"), [firstImage])
+
     return (
         <Modal basic onClose={() => {setOpen(false); setFirstImage(photos[0])}} onOpen={() => setOpen(true)} open={open} closeOnDimmerClick={false}
                 size='fullscreen' trigger={eval(triggerObj)} 
@@ -142,11 +151,12 @@ const ImageViewerModal = (props) => {
             <Image src={rightArrow} size="mini" style={{...imageArrowStyle, right: 0}} onClick={nextProperty}/>
             <Image src={delete2} size="mini" style={{position: "absolute", right: 0, top: 0, cursor: "pointer"}} onClick={() => {setOpen(false); setFirstImage(images[0]); setCurrentIndex(0)}}/>
             <Modal.Content image style={{paddingTop: 0, display: "flex", justifyContent: "center"}}>
-                <Image src={firstImage.path} size="big" style={{height: 420}}/>
+                <Image src={firstImage} size="big" style={{height: 420}}/>
             </Modal.Content>
             <Modal.Content style={{ display: "flex", justifyContent: "center"}}>
                 <ImageViewer imagesProps={imagesProps} firstImageProps={firstImageProps} 
-                  prevProperty={prevProperty} nextProperty={nextProperty} currentIndexProps={currentIndexProps} />
+                    prevProperty={prevProperty} nextProperty={nextProperty} 
+                    currentIndexProps={currentIndexProps} />
             </Modal.Content>
         </Modal>
     )

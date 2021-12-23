@@ -127,27 +127,24 @@ const DragAndDrop = (props) => {
             isDragReject} = useDropzone({
         accept: 'image/*',
         onDrop: acceptedFiles => {
-            uploadImage((prevFiles) => {
-                let acceptedList = [...prevFiles]
-                console.log(acceptedFiles, "ACCEPTED FILES")
-                const n = acceptedFiles.map((file, index) => {
-                    setInMemoryImages(prev => {
-                        prev.push(URL.createObjectURL(file))
-                        return prev
-                    })
-                    setImageBlobList(prev => {
-                        prev.push(file)
-                        return prev
-                    })
-                    /*Object.assign(file, {
-                        id: uuidv4(),
-                        tag: "Others",
-                        cover_photo: true
-                    })*/
+            console.log(acceptedFiles, "ACCEPTED FILES")
+            const n = acceptedFiles.map((file, index) => {
+                setInMemoryImages(prev => {
+                    prev.push(URL.createObjectURL(file))
+                    return prev
                 })
-                acceptedList.push(...n)
-                return acceptedList;
-            });
+                setImageBlobList(prev => {
+                    prev.push(file)
+                    return prev
+                })
+                /*Object.assign(file, {
+                    id: uuidv4(),
+                    tag: "Others",
+                    cover_photo: true
+                })*/
+            })
+            setDelImage(prev => !prev)
+            console.log(n, "N VARIABLE")
         }
     });
 

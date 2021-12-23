@@ -225,21 +225,22 @@ const ListProperty = (props) => {
                             </>
                             :
                             <div style={{textAlign: "center"}}>
-                                <InfoPageButton message="No properties match your search." icon={searchPropertyIcon} 
-                                    buttonIcon={searchPropertyIcon} buttonMessage="SEARCH PROPERTY" buttonLink="/" />
+                                <InfoPageButton message="No properties match your search. Unable to find results? Try posting a property and search for it." 
+                                    icon={searchPropertyIcon} buttonLink="/"
+                                    buttonIcon={searchPropertyIcon} buttonMessage="SEARCH PROPERTY"  />
                             </div>
                             }
                         </Grid.Column>
                     </Grid>
-                    <Modal onClose={() => setOpen(false)} onOpen={() => setOpen(true)} open={open}
-                        dimmer="blurring" trigger={
+                    <Modal onClose={() => setOpen(false)} onOpen={() => setOpen(true)} open={open} size="mini"
+                        style={{maxWidth: "80%"}} dimmer="blurring" trigger={
                                 <Button circular color="purple" id="floating-button" size="large" style={{padding: 10}} >
                                     <Image src={filterIcon1} />
                                 </Button>
                             } id="modal">
                         <Modal.Content >
-                            <Filters />
-                            <Button color='twitter' size="big" style={{borderRadius: 0, height: 60}} fluid>Apply Filters</Button>
+                            <Filters applyFilters={applyFilters} />
+                            {/*<Button color='twitter' size="big" style={{borderRadius: 0, height: 60}} fluid>Apply Filters</Button>*/}
                         </Modal.Content>
                     </Modal>
                 </Fragment>

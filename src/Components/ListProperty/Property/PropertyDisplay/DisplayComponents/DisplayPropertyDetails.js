@@ -54,7 +54,7 @@ let propertyDetailsDiv
 
 const DisplayPropertyDetails = (props) => {
 
-    const {property, shortListProps} = props
+    const {property, shortListProps, imageListProps} = props
     const {unitSelectedProps} = useContext(AppContext)
     const [areaUnit, setAreaUnit] = unitSelectedProps
     //const [loading, setLoading] = props.loadingProps    
@@ -326,17 +326,22 @@ const DisplayPropertyDetails = (props) => {
         </div>
     )
 
+    useEffect(() => {
+        console.log("FROM DISPLAY PROPERTY DETAILS", imageListProps[0])
+    })
+
     return(
             <div id="PropertyDetails">
                 <Grid >
                     <Grid.Column mobile={16} tablet={6} computer={6} stretched>
-                        {property.photos.length === 0 ?
+                        {(!property.photos_list || JSON.parse(property.photos_list).length === 0) ?
                             <div>
                                 {dispImage}
                             </div>
                         :
                             <div style={{display: "inline-flex"}}>
-                                <ImageViewerModal shortListProps={props.shortListProps} property={property} triggerObj="dispImage"/>
+                                <ImageViewerModal property={property} triggerObj="dispImage"
+                                    shortListProps={props.shortListProps} property={{photos: imageListProps[0]}} />
                             </div>
                         }
                     </Grid.Column>

@@ -92,7 +92,7 @@ const ImageViewer = (props) => {
     }
 
     const selectIndex = (propertyItem) => {
-        return images.findIndex(x => x.path === propertyItem.path)
+        return images.findIndex(x => x === propertyItem)
     }
 
     return(
@@ -106,11 +106,13 @@ const ImageViewer = (props) => {
                         {
                             images.map(propertyItem => {
                                 let styleArr;
-                                styleArr = propertyItem.path !== firstImage.path ? {opacity: 0.5, transform: "scale(0.85)"} :{opacity: 1, transform: "scale(1)"}
-                                return <div style={{width: 150}}><Image src={propertyItem.path} key={propertyItem.id}
-                                        onClick={() => {setFirstImage(propertyItem); setCurrentIndex(selectIndex(propertyItem))}} 
-                                        size="small" key={propertyItem.index} style={{...styleArr, cursor: "pointer", maxHeight: 150, width: 150, display: "inline-flex",
-                                        transition: "opacity 300ms linear, transform 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955)"}}/>
+                                styleArr = propertyItem !== firstImage ? {opacity: 0.5, transform: "scale(0.85)"} :{opacity: 1, transform: "scale(1)"}
+                                return <div style={{width: 150}} key={propertyItem}>
+                                            <Image src={propertyItem} size="small" key={propertyItem.index} 
+                                                onClick={() => {setFirstImage(propertyItem); setCurrentIndex(selectIndex(propertyItem))}} 
+                                                style={{...styleArr, cursor: "pointer", maxHeight: 150, width: 150, display: "inline-flex",
+                                                transition: "opacity 300ms linear, transform 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955)",
+                                                border: "1px solid gray"}}/>
                                         </div>
                             })
                         }

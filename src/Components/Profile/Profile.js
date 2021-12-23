@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Header, Segment, Table, Image, Button, Grid, Icon } from 'semantic-ui-react'
 import userIcon from "../ColorIcons/userIcon-2.svg"
 import viewIcon from "../../static/Icons/GeneralIcons/viewPropertyIcon.svg"
@@ -10,6 +10,8 @@ import {ViewContext} from "../ViewContext"
 import Authentication from "../Authentication/Authentication"
 import InfoPageButton from "../UI/InfoPages/InfoPageButton"
 import "./Profile.css"
+import axios from "axios"
+import PropertyCard from "../ListProperty/Property/PropertyCard"
 
 
 const Profile = (props) => {
@@ -20,13 +22,34 @@ const Profile = (props) => {
     const [viewPropertyPosted, setViewPropertyPosted] = useState(false)
     const [propertyLoading, setPropertyLoading] = useState(false)
     const [propertyPostedList, setPropertyPostedList] = useState([])
+    const [profile, setProfile] = useState(null)
     const [profileLoading, setProfileLoading] = useState(false)
+    const [propertiesLoading, setPropertiesLoading] = useState(false)
     
     const trigger = (
         <Button floated="right" color="orange">
             <Icon name='pencil' />EDIT PROFILE
         </Button>
     )
+
+    useEffect(() => {
+        fetchProfileProperties()
+    }, [])
+
+    const fetchProfileProperties = () => {
+        setPropertiesLoading(true)
+        axios.get(`/profiles/getProperties/1`).then(res => {
+            console.log(res.data, "PRINTING PROFILE RESPONSE")
+            setPropertyPostedList(res.data)
+            setPropertiesLoading(false)
+            for(let data of res.data){
+                console.log(data.id, data.photos_list)
+            }
+        }).catch(err => {
+            setPropertiesLoading(false)
+            console.log(err, err.response)
+        })
+    }
 
     const authTrigger = (
         <Button color="purple" size="large" style={{
@@ -141,9 +164,21 @@ const Profile = (props) => {
                                 buttonIcon={postPropertyIcon} buttonMessage="POST A PROPERTY" buttonLink="/post-property" />
                         </div>
                         :
-                            propertyPostedList.length !== 0 && propertyPostedList.map(prop => <div>Prop</div>)
+                            <div>
+                                <div>
+                                    <Header as="h3" style={{textAlign: "center", margin: 10}}>
+                                        {propertyPostedList.length} property ads posted by you</Header>
+                                </div>
+                                <div>
+                                {propertyPostedList.length !== 0 && propertyPostedList.map(property => 
+                                    <div key={property.id} style={{maxWidth: 900, padding: 14}}>
+                                        <PropertyCard property={property} />
+                                    </div>
+                                )}
+                                </div>
+                            </div>
                     :
-                        <Button style={{padding: 18}} style={{display: "flex", alignItems: "center", justifyContent: "center"}}
+                        <Button style={{display: "flex", alignItems: "center", justifyContent: "center", marginTop: 28}}
                                 size="large" color="purple" onClick={() => setViewPropertyPosted(true)}>
                             <Image src={viewIcon} style={{height: 35, width: 35, marginRight: 10}} />
                             <div>View Properties Posted By You</div>

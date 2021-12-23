@@ -19,13 +19,15 @@ let timer
 
 const DisplayDetails = (props) => {
 
-    const {property} = props
+    const {propsPassed, propertyProp, imageListProps} = props    
+    const [property, setProperty] = propertyProp
     const properType = property.property_type
-    const {propsPassed} = props
     const [headerHeight, setHeaderHeight] = propsPassed.headerHeightProps
 
     const {screenWidthProps, authenticatedUserProps} = useContext(ViewContext)
     const [authenticatedUser, setAuthenticatedUser] = authenticatedUserProps
+    const [archiveLoading, setArchiveLoading] = useState(false)
+    const [markAsSoldLoading, setMarkAsSoldLoading] = useState(false)
     const screenWidth = screenWidthProps[0]
 
     const {activeMenuProps, propertyDetailsHeightProps, featuresHeightProps, locationDetailsHeightProps, ownerDetailsHeightProps} = useContext(PropertyDisplayContext)
@@ -89,9 +91,40 @@ const DisplayDetails = (props) => {
         return () => window.removeEventListener("scroll", func)    
     })
 
+    const changePropertyStatus = (status) => {
+        const params = {
+            id: property.id,
+            posting_status: status
+        }
+        if(status === "Archived"){
+            setArchiveLoading(true)
+        } else if(status === "Sold"){
+            setMarkAsSoldLoading(true)
+        }
+        axios.put(`/properties/${property.id}`, params).then(res => {
+            console.log(res)
+            setProperty(res.data)
+            setArchiveLoading(false)
+            setMarkAsSoldLoading(false)
+        }).catch(err => {
+            setArchiveLoading(false)
+            setMarkAsSoldLoading(false)
+            console.log(err, err.response)
+        })
+    }
+
+    const deleteProperty = () => {
+        axios.delete(`/properties/${property.id}`).then(res => {
+            console.log(res)
+        }).catch(err => {
+            console.log(err, err.response)
+        })
+    }
+
     return(
         <Segment style={{marginTop: (headerHeight + 5)}} id="master-segment"> 
-            <DisplayPropertyDetails  {...propsPassed} {...heightProps} screenWidth={screenWidth} />
+            <DisplayPropertyDetails  {...propsPassed} {...heightProps} screenWidth={screenWidth}
+                imageListProps={imageListProps} />
             <Divider section/>          
             <DisplayFeatures property={property} properType={properType} {...heightProps} screenWidth={screenWidth}/>
             <Divider section/>
@@ -103,24 +136,27 @@ const DisplayDetails = (props) => {
                 <div style={{margin: "56px 14px 14px 14px"}}>
                     <Grid >
                         <Grid.Column mobile={16} tablet={8} computer={8} style={{display: "flex"}} className="d-flex align-center justify-center" >
-                            <Button size="large" color='green' style={{display: "flex"}} as={Link} to={`/editProperty/${property.id}`}
-                                    className="d-flex align-center justify-center" >
+                            <Button size="large" color='green' as={Link} to={`/editProperty/${property.id}`}
+                                    className="d-flex align-center justify-center" style={{display: "flex"}}
+                                    disabled={["Archived", "Sold"].includes(property.posting_status)} >
                                 <Image src={editPropertyIcon} style={{width: 35, height: 35, marginRight: 10}} />
                                 <div>EDIT PROPERTY</div>
                             </Button>
                         </Grid.Column>
                         <Grid.Column mobile={16} tablet={8} computer={8} style={{display: "flex"}} className="d-flex align-center justify-center" >
                             <Button size="large" color='red' className="d-flex align-center justify-center"
-                                    style={{display: "flex"}} >
+                                    style={{display: "flex"}} loading={archiveLoading} disabled={property.posting_status === "Archived"}
+                                    onClick={() => changePropertyStatus("Archived")} >
                                 <Image src={deletePropertyIcon} style={{width: 35, height: 35, marginRight: 10}} />
-                                <div>ARCHIVE PROPERTY</div>
+                                <div>{property.posting_status === "Archived" ? "ARCHIVED" : "ARCHIVE PROPERTY"}</div>
                             </Button>
                         </Grid.Column>
                         <Grid.Column width={16} style={{display: "flex"}} className="d-flex align-center justify-center" >
                             <Button size="large" color='purple' className="d-flex align-center justify-center"
-                                    style={{display: "flex"}} >
+                                    style={{display: "flex"}} loading={markAsSoldLoading} disabled={property.posting_status === "Sold"}
+                                    onClick={() => changePropertyStatus("Sold")} >
                                 <Image src={propertySoldIcon1} style={{width: 35, height: 35, marginRight: 13}} />
-                                <div>MARK PROPERTY AS SOLD</div>
+                                <div>{property.posting_status === "Sold" ? "SOLD" : "MARK PROPERTY AS SOLD"}</div>
                             </Button>
                         </Grid.Column>
                     </Grid>

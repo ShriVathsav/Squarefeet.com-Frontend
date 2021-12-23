@@ -260,7 +260,7 @@ const Filters = (props) => {
             }
 
             {/* AMENITIES FILTER */}
-
+            {/*
             <Menu.Item id="menu-item" className="accordion">
                 <span style={{cursor: "pointer", display: "inline"}} id="menu-header">
                     Amenities
@@ -285,6 +285,7 @@ const Filters = (props) => {
                 <Label as='a' onClick={() => setAmenitiesFilter(prev => addOrRemoveFilters(prev, "Resale"))}
                     size="large" style={{margin: 4, borderRadius: "2em"}}>Swimming Pool</Label>
             </div>
+            */}
 
             {/* FURNISHING FILTER */}
 

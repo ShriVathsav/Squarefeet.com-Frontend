@@ -32,12 +32,27 @@ import postedBy1 from "../../ColorIcons/clip.svg";
 import postedBy2 from "../../ColorIcons/share-post.svg";
 
 import emptyImage from "../../ColorIcons/MainIcon/emptyImage.png";
+import AWS from "aws-sdk"
+
+AWS.config.update({
+    accessKeyId: process.env.REACT_APP_ACCESS_KEY,
+    secretAccessKey: process.env.REACT_APP_SECRET_ACCESS_KEY
+})
+
+const s3Bucket = process.env.REACT_APP_BUCKET_NAME
+const region = process.env.REACT_APP_BUCKET_REGION
+const myBucket = new AWS.S3({
+    params: { Bucket: process.env.REACT_APP_BUCKET_NAME},
+    signatureVersion: 'v4',
+    region
+})
 
 const PropertyCard = (props) => {
 
     const shortListProps = useState(false)
 
     const [shortList, setShortList] = shortListProps
+    const [imageList, setImageList] = useState([])
     const {property} = props
 
     const jsxGenerator = {
@@ -127,6 +142,42 @@ const PropertyCard = (props) => {
 
     useEffect(() => console.log(property, "PROPERTY"))
 
+    useEffect(() => {
+        (async() => {
+            const localImageList = []
+            if(property.photos_list){
+                for (let image of JSON.parse(property.photos_list)) {
+                    const signedUrl = await getPresignedUrls(image)
+                    console.log(signedUrl, "SIGNED URL BOOK DISPLAY")
+                    localImageList.push(signedUrl)
+                }   
+            }
+            setImageList(localImageList)
+        })()
+    }, [])
+
+    const getPresignedUrls = async(image) => {
+        //const s3 = new AWS.S3()
+        console.log(image, "PRINTING IMAGE FOR WHICH PRESIGNED URL IS GEN")
+        return new Promise((resolve,reject) => {
+            const bucketName = s3Bucket
+            const myKey = image
+            const signedUrlExpireSeconds = 60 * 5
+            const params = {
+                Bucket: bucketName,
+                Key: myKey,
+                Expires: signedUrlExpireSeconds
+            }
+            myBucket.getSignedUrl('getObject', params, (err, url) => {
+                if (err) {
+                    console.log(err, "ERROR GEN PRESIGNED URLS")
+                    reject(err)
+                }
+                resolve(url);
+            });
+        })
+    }
+
     const dispImage2 = (
         <div style={{position: "relative", display: "inline-flex"}} id="card-image-2">
             <Image
@@ -157,13 +208,14 @@ const PropertyCard = (props) => {
                 <Grid>
                         <Grid.Column mobile={16} tablet={6} computer={6} stretched>
                             {/*<Segment fluid></Segment>*/}
-                            {property.photos.length === 0 ?
+                            {(!property.photos_list || JSON.parse(property.photos_list).length === 0) ?
                                 <div>
                                     {dispImage2}
                                 </div>
                             :
                                 <div style={{display: "inline-flex"}}>
-                                    <ImageViewerModal shortListProps={shortListProps} property={props.property} triggerObj="dispImage2"/>
+                                    <ImageViewerModal shortListProps={shortListProps} 
+                                        property={{photos: imageList, id: property.id}} triggerObj="dispImage2"/>
                                 </div>
                             }
                             {/*<Image src={"https://paranoidandroid.co/assets/wallpapers/2018/submerged_desktop_thumb.jpg"} size='massive' fluid/>*/}

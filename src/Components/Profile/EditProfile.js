@@ -17,10 +17,10 @@ const EditProfile = (props) => {
     const [editProfileError, setEditProfileError] = editProfileErrorProps
     const [open, setOpen] = useState(false)
     const profileContactNumber = useState(authenticatedUser.contact_no)
-    const profileFirstName = useState(authenticatedUser.first_name)
+    const profileFirstName = useState(authenticatedUser.first_name || "")
     const profileLastName = useState(authenticatedUser.last_name)
-    const profileCompanyName = useState(authenticatedUser.company_name)
-    const profileCompanyAddress = useState(authenticatedUser.company_address)
+    const profileCompanyName = useState(authenticatedUser.company_name || "")
+    const profileCompanyAddress = useState(authenticatedUser.company_address || "")
 
     const formProps = {
         profileContactNumber, profileFirstName, profileLastName, profileCompanyName, 
