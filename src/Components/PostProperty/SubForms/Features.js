@@ -92,7 +92,8 @@ const Features = (props) => {
     const [overlooking, setOverlooking] = overlookingProp
     const [widthOfFacingRoadUnit, setWidthOfFacingRoadUnit] = widthOfFacingRoadUnitProp
     const [propertyDescription, setPropertyDescription] = propertyDescriptionProp
-    const [featuresValid, setFeaturesValid] = featuresValidProp;    
+    const [featuresValid, setFeaturesValid] = featuresValidProp;
+    const [imageModalOpen, setImageModalOpen] = useState(false);    
 
     const [displayMoreAmenities, setDisplayMoreAmenities] = useState(false)
 
@@ -167,14 +168,15 @@ const Features = (props) => {
                         <Form.Field>
                             <label>Add Photos (Recommended)</label>
                         </Form.Field>
-                            <Modal closeOnDimmerClick size="large"
+                            <Modal closeOnDimmerClick size="large" open={imageModalOpen} style={{maxWidth: "95%"}}
+                            onClose={() => setImageModalOpen(false)} onOpen={() => setImageModalOpen(true)} 
                             trigger={<Button basic color='purple' style={{padding: 17, borderRadius: 0}}>
                                         <Icon name='images' /> Click here to Upload Images
                                     </Button>} >
-                            <Modal.Header>Upload Images</Modal.Header>
+                            <Header icon='image' content='Upload Images' />
                             <Grid columns={1} style={{margin: 10}}>
                                 <Grid.Column>
-                                    <Modal.Content image>
+                                    <Modal.Content>
                                         <Modal.Description>
                                             <DragAndDrop uploadedImagesProp={props.uploadedImagesProp}
                                                 deletedImagesProp={props.deletedImagesProp}
@@ -186,7 +188,7 @@ const Features = (props) => {
                                 </Grid.Column>
                             </Grid>
                             <Modal.Actions>
-                                <Button color="purple">
+                                <Button color="purple" onClick={() => setImageModalOpen(false)} >
                                     Proceed <Icon name='right chevron' />
                                 </Button>
                             </Modal.Actions>

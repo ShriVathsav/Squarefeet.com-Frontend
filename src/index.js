@@ -4,6 +4,9 @@ import App from './Components/App';
 import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-css/semantic.min.css'
 import "./index.css"
+import axios from 'axios'
+
+axios.defaults.baseURL = 'http://13.126.99.67:8080'
 
 ReactDOM.render(
   <React.StrictMode>

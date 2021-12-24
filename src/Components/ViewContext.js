@@ -20,9 +20,9 @@ const ViewContextProvider = props => {
             console.log(res)
             authenticatedUserProps[1](res.data)
         }).catch((err) => {
-            console.dir(err)
             localStorage.clear()
             authenticatedUserProps[1]({})
+            console.dir(err, err.response)
         })
     }, [])
 

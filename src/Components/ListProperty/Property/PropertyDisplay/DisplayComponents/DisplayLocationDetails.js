@@ -33,13 +33,13 @@ const DisplayLocationDetails = (props) => {
     useEffect(() => setLocationDetailsHeight(locationDetailsDiv.offsetHeight), [screenWidth])
 
     const constructAddress = () => {
-        const doorNo = property.door_no ? `No.  + ${property.door_no} + , ` : ""
+        const doorNo = property.door_no ? `No. ${property.door_no}, ` : ""
         const projectName = property.project_name ? `${property.project_name}, ` : ""
         const street = property.street ? `${property.street}, ` : ""
         const locality = property.locality ? `${property.locality}, ` : ""
         const landmark = property.landmark  ? `${property.landmark}, `: ""
         const city = property.city ? `${property.city}, ` : ""
-        const postalCode = property.postal_code
+        const postalCode = property.postal_code + "."
         return `${doorNo}${projectName}${street}${locality}${landmark}${city}${postalCode}`
     }
 

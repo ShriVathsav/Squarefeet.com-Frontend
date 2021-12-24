@@ -104,7 +104,7 @@ const PostProperty = (props) => {
         pricingValidProp, featuresValidProp, handleClick, postedPropertyIdProps, postedSuccessProps,
         submitHandler: uploadImageToS3, fillFormProp, property: props.property, mode: props.mode,
         uploadedImagesProp, deletedImagesProp, inMemoryImagesProp, imageBlobListProp,
-        preSignedUrlListProp: props.preSignedUrlListProp}
+        preSignedUrlListProp: props.preSignedUrlListProp, loading: props.loading}
 
     useEffect(() => {
         console.log(props.preSignedUrlListProp)

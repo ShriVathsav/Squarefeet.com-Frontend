@@ -12,6 +12,7 @@ import InfoPageButton from "../UI/InfoPages/InfoPageButton"
 import {furnishingItemsConstant, amenitiesConstants, moreAmenitiesConstants} from "../Utility/Constants"
 import axios from "axios"
 import AWS from 'aws-sdk'
+import PortalMain from "../UI/PortalMain"
 
 AWS.config.update({
     accessKeyId: process.env.REACT_APP_ACCESS_KEY,
@@ -34,16 +35,22 @@ const EditPropertyAd = (props) => {
     const [loading, setLoading] = useState(false)
     const [editedSuccess, setEditedSuccess] = useState(false)
     const [editedPropertyId, setEditedPropertyId] = useState("")
+    const portalOpenProps = useState(false)
+    const [portalOpen, setPortalOpen] = portalOpenProps
+    const [portalMessage, setPortalMessage] = useState("")
 
     const editPropertyAd = (params) => {
+        setLoading(true)
         axios.put(`/properties/${props.match.params.id}`, params).then(res => {
             console.log(res)
+            setLoading(false)
             setEditedSuccess(true)
             setEditedPropertyId(res.data.id)
         }).catch(err => {
+            setLoading(false)
             setEditedSuccess(false)
-            //setPortalOpen(true)
-            //setPortalMessage("An error has occured while posting property. Please try again later")
+            setPortalOpen(true)
+            setPortalMessage("An error has occured while updating your ad. Please try again later")
             console.log(err, err.response)
         })
     }
@@ -120,8 +127,16 @@ const EditPropertyAd = (props) => {
         })
     }, [])
 
+    const portalProps = {
+        portalOpenProps: portalOpenProps,
+        icon: "time",
+        header: "An error has occured",
+        message: portalMessage
+    }
+
     return(
         <div>
+            <PortalMain {...portalProps} />
             <div id="page-title">
                 <Image src={postPropertyIcon} style={{height: 45, width: 45, marginRight: 10}} />
                 <div>EDIT POSTED PROPERTY</div>
@@ -131,10 +146,10 @@ const EditPropertyAd = (props) => {
             :
                 <>
                 {property ?
-                    <> 
+                    <>
                     {!editedSuccess ?
                         <PostProperty submitHandler={editPropertyAd} property={property}
-                        preSignedUrlListProp={preSignedUrlListProp} mode="edit" />
+                            loading={loading} preSignedUrlListProp={preSignedUrlListProp} mode="edit" />
                     :
                         <div style={{textAlign: "center"}}>
                             <InfoPageButton icon={thumbsUp} message="Property has been updated successfully"

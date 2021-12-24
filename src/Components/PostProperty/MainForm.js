@@ -485,7 +485,7 @@ const MainForm = (props) => {
             <PortalMain {...portalProps} />
             {renderForm()}
             {props.stepProps[0] === 5 &&
-                <Button fluid size="large" color="purple" onClick={formSubmitHandler2}
+                <Button fluid size="large" color="purple" onClick={formSubmitHandler2} loading={props.loading}
                         style={{display: "flex", alignItems: "center", justifyContent: "center"}} >
                    <Image src={postPropertyIcon} style={{height: 35, width: 35, marginRight: 12}} />
                    <div>{(props.mode === "edit") ? "UPDATE PROPERTY AD" : "POST PROPERTY FOR SALE"}</div>

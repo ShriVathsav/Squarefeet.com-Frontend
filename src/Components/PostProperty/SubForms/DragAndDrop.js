@@ -231,7 +231,7 @@ const DragAndDrop = (props) => {
                     />
                 </div>
             </div>
-            <Form>
+            {/*<Form>
                 <Form.Field required>
                     <label>Tag As</label>
                     <div>
@@ -239,7 +239,7 @@ const DragAndDrop = (props) => {
                             value={file.tag} onChange={(event, data) => onTagSelect(data.value)} scrolling options={tags} />
                     </div>
                 </Form.Field>
-            </Form>
+            </Form>*/}
         </Segment>
     ));
 
