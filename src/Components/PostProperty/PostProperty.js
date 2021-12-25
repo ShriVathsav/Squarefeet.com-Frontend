@@ -54,10 +54,9 @@ const PostProperty = (props) => {
     const [step, setStep] = stepProps
 
     const handleClick = (pest) => {
-        console.log(pest, step, "HANDLE CLICK")
         switch(pest){
             case 1:
-                console.log("case 1", step, setStep(1));setStep(1);
+                setStep(1);
             case 2:
                 basicDetailsValid && setStep(2);
             case 3:
@@ -70,8 +69,7 @@ const PostProperty = (props) => {
         
     }
 
-    const uploadImageToS3 =  async(data) => {
-        console.log("UPLOADING IMAGE")  
+    const uploadImageToS3 =  async(data) => { 
         const objectKeysArray = []     
         for(const file of imageBlobListProp[0]){
             const objectKey = uuidv4() + " - " + file.name
@@ -80,11 +78,9 @@ const PostProperty = (props) => {
                 Bucket: s3Bucket,
                 Key: objectKey,
                 ContentType: file.type
-            }                
-            console.log("UPLOADING IMAGE 2")
+            }
             try{
                 const res = await myBucket.putObject(params).promise()
-                console.log(objectKey, res, "OBJECT KEY")
                 objectKeysArray.push(objectKey)
             } catch(err){
                 //this.error = true
@@ -105,10 +101,6 @@ const PostProperty = (props) => {
         submitHandler: uploadImageToS3, fillFormProp, property: props.property, mode: props.mode,
         uploadedImagesProp, deletedImagesProp, inMemoryImagesProp, imageBlobListProp,
         preSignedUrlListProp: props.preSignedUrlListProp, loading: props.loading}
-
-    useEffect(() => {
-        console.log(props.preSignedUrlListProp)
-    })
 
     useEffect(() => {
         if(basicDetailsValid === false){
@@ -143,7 +135,6 @@ const PostProperty = (props) => {
     }   
     
     const fillForm = () => {
-        console.log(fillFormProp[0])
         fillFormProp[1](true)
     }
 

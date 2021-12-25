@@ -17,7 +17,7 @@ const ViewContextProvider = props => {
         axios.get("/auth", {headers: {
             "Authorization": `bearer ${token}`
         }}).then(res => {
-            console.log(res)
+            //console.log(res)
             authenticatedUserProps[1](res.data)
         }).catch((err) => {
             localStorage.clear()

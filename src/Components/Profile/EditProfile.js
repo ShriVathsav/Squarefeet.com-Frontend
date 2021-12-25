@@ -14,6 +14,7 @@ const EditProfile = (props) => {
 
     const [successMessage, setSuccessMessage] = useState(false)
     const editProfileErrorProps = useState([])
+    const [editProfileLoading, setEditProfileLoading] = useState(false)
     const [editProfileError, setEditProfileError] = editProfileErrorProps
     const [open, setOpen] = useState(false)
     const profileContactNumber = useState(authenticatedUser.contact_no)
@@ -28,22 +29,30 @@ const EditProfile = (props) => {
     }
 
     const editProfile = () => {
-        isEditProfileFormValid && 
-        axios.put(`/profiles/${authenticatedUser.id}`, {
-            contact_no: profileContactNumber[0],
-            first_name: profileFirstName[0],
-            last_name: profileLastName[0],
-            company_name: profileCompanyName[0],
-            company_address: profileCompanyAddress[0],
-        }).then(res => {
-            console.log(res)
-            if(res.data.errors){
-                setEditProfileError(res.data.errors)
-            } else {
-                !!res.data.user && setAuthenticatedUser(res.data.user)
-                setSuccessMessage(true)
-            }
-        })
+        if(isEditProfileFormValid){
+            setEditProfileLoading(true)
+            axios.put(`/profiles/${authenticatedUser.id}`, {
+                contact_no: profileContactNumber[0],
+                first_name: profileFirstName[0],
+                last_name: profileLastName[0],
+                company_name: profileCompanyName[0],
+                company_address: profileCompanyAddress[0],
+            }).then(res => {
+                console.log(res)
+                if(res.data.errors){
+                    setEditProfileLoading(false)
+                    setEditProfileError(res.data.errors)
+                } else {
+                    setEditProfileLoading(false)
+                    !!res.data.user && setAuthenticatedUser(res.data.user)
+                    setSuccessMessage(true)
+                }
+            }).catch(err => {
+                setEditProfileLoading(false)
+                console.log(err, err.response)
+            })
+        }
+        setEditProfileLoading(false)
     }
 
     const isEditProfileFormValid = () => {
@@ -63,10 +72,10 @@ const EditProfile = (props) => {
                 <EditProfileForm {...formProps}/>
             </Modal.Content>
             <Modal.Actions>
-                <Button color='red' onClick={() => setOpen(false)}>
+                <Button color='red' onClick={() => setOpen(false)} disabled={editProfileLoading}>
                     <Icon name='remove' /> Close
                 </Button>
-                <Button color='green' onClick={editProfile}>
+                <Button color='green' onClick={editProfile} loading={editProfileLoading}>
                     <Icon name='checkmark' /> Save
                 </Button>
             </Modal.Actions>

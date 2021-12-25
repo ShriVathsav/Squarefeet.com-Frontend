@@ -89,11 +89,9 @@ const DisplayFeatures = (props) => {
         airConditioner,bulb,bed,cupBoard,curtain,diningTable,fan,modularKitchen,oven,sofa,refrigerator,stove,television,
         wardrobe,washingMachine,waterHeater} = images
 
-    console.log(properType, "propertype")
 
     useEffect(() => {
         featuresDiv = document.getElementById("Features")
-        console.log(JSON.parse(property.amenities_list))
     }, [])
 
     const propertyDetailsHeight = props.propertyDetailsHeightProps[0]

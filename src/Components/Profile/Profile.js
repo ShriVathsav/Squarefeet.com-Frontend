@@ -42,9 +42,6 @@ const Profile = (props) => {
             console.log(res.data, "PRINTING PROFILE RESPONSE")
             setPropertyPostedList(res.data)
             setPropertiesLoading(false)
-            for(let data of res.data){
-                console.log(data.id, data.photos_list)
-            }
         }).catch(err => {
             setPropertiesLoading(false)
             console.log(err, err.response)

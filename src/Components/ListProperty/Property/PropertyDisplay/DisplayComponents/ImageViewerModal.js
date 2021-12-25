@@ -32,14 +32,13 @@ const ImageViewerModal = (props) => {
     const {triggerObj} = props
 
     useEffect(() => {
-        console.log(photos)
         setImages(photos)
         setFirstImage(photos[0])
     }, [photos])
   
     const nextProperty = () => {
       let newIndex;
-      console.log(currentIndex, images.length)
+      //console.log(currentIndex, images.length)
       if(currentIndex !== images.length-1){
           newIndex = currentIndex+1;
           setCurrentIndex(newIndex)
@@ -49,7 +48,7 @@ const ImageViewerModal = (props) => {
 
     const prevProperty = () => {
         let newIndex;
-        console.log(currentIndex, images.length)
+        //console.log(currentIndex, images.length)
         if(currentIndex > 0){
             newIndex = currentIndex-1;
             setCurrentIndex(newIndex)
@@ -136,12 +135,9 @@ const ImageViewerModal = (props) => {
 
     useEffect(() => {
       return (() => {
-        console.log("UNMOUNTING IMAGE VIEWER")
         setFirstImage(images[0])
       })
     }, [])
-
-    useEffect(() => console.log(firstImage, "FIRST IMAGE"), [firstImage])
 
     return (
         <Modal basic onClose={() => {setOpen(false); setFirstImage(photos[0])}} onOpen={() => setOpen(true)} open={open} closeOnDimmerClick={false}

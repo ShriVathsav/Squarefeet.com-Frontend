@@ -116,14 +116,8 @@ const ListProperty = (props) => {
 
     useEffect(() => {
         const a = qs.parse(props.location.search, { ignoreQueryPrefix: true })
-        console.log(a)
         shootRequest(a)
     }, [pageNumber])
-
-    useEffect(() => {
-        console.log(props, "PROPERTIESs")
-        console.log(propertyContext.propertyList, "TESI=TING COMNTEXT")
-    })
 
     const itemsPresent = (arr1, arr2) => {
         for(const i of arr1){
@@ -196,8 +190,6 @@ const ListProperty = (props) => {
 
     const filterProps = {bedroomFilterProp, propertyTypeFilterProp, 
         postedByFilterProp, propertyStatusFilterProp, amenitiesFilterProp, furnishingFilterProp, applyFilters}
-
-    useEffect(() => console.log(propertyList, filteredPropertyList))
 
     return(
         <Fragment>

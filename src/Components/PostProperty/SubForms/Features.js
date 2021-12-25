@@ -117,9 +117,6 @@ const Features = (props) => {
         return count
     }
 
-
-    useEffect(() => console.log(props.preSignedUrlListProp))
-
     const addOrRemoveAmenities = (id) => {
         setAmenities(prev => {
             return [...prev].map(item => {

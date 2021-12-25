@@ -299,9 +299,7 @@ const DisplayPropertyDetails = (props) => {
 
     useEffect(() => {
         setPropertyDetailsHeight(propertyDetailsDiv.offsetHeight)
-    }, [screenWidth])
-
-    useEffect(() => console.log(propertyDetailsHeight, "PROPDETAILS HEIGHR"))
+    }, [screenWidth])    
 
     const dispImage = (
         <div style={{position: "relative"}} id="card-image-3" >
@@ -325,10 +323,6 @@ const DisplayPropertyDetails = (props) => {
             </div>
         </div>
     )
-
-    useEffect(() => {
-        console.log("FROM DISPLAY PROPERTY DETAILS", imageListProps[0])
-    })
 
     return(
             <div id="PropertyDetails">

@@ -42,8 +42,6 @@ const NavBar = (props) => {
         { key: 'sign-out', text: 'Sign Out', icon: 'sign out' },
     ]
 
-    useEffect(() => console.log(authenticatedUser, sideBarOpen, "AUTHENTICATED USER"))
-
     const signOut = () => {
         localStorage.clear()
         setAuthenticatedUser({})

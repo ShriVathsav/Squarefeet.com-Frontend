@@ -35,7 +35,6 @@ const DisplayOwnerDetails = (props) => {
     )
 
     useEffect(() => {
-        console.log("GETTING OWNER DETAILS")
         if(!!authenticatedUser && Object.keys(authenticatedUser).length !== 0){
             axios.get(`/profiles/${property.profile_id}`).then(res => {
                 console.log(res.data)

@@ -161,8 +161,6 @@ const DragAndDrop = (props) => {
         </li>
     ));
 
-    useEffect(() => console.log(imageBlobList, uploadedImages, deletedImages, inMemoryImages, preSignedUrlList))
-
     const style = useMemo(() => ({
         ...baseStyle,
         ...(isDragActive ? activeStyle : {}),
@@ -174,11 +172,9 @@ const DragAndDrop = (props) => {
         isDragAccept
     ]);
 
-    useEffect(() => console.log("mounting"),[])
-    useEffect(() => {console.log("mounting and unmounting"); return () => console.log("unmount")})
+    //useEffect(() => {console.log("mounting and unmounting"); return () => console.log("unmount")})
 
     const inMemoryImageDelete = (index) => {
-        console.log("DELETING IN MEMORY IMAGES")
         setInMemoryImages(prev => {
             prev.splice(index, 1)
             return prev
@@ -190,8 +186,7 @@ const DragAndDrop = (props) => {
         setDelImage(prev => !prev)
     }
 
-    const uploadedImageDelete = (index) => {
-        console.log("DELETING UPLOADED IMAGES")
+    const uploadedImageDelete = (index) => {        
         setDeletedImages(prev => {
             prev.push(uploadedImages[index])
             return prev

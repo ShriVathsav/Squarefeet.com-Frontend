@@ -145,7 +145,6 @@ const MainForm = (props) => {
         preSignedUrlListProp: props.preSignedUrlListProp}
 
     useEffect(() => {
-        console.log(props.preSignedUrlListProp)
         if(props.mode === "create"){
             furnishingItemsProp[1](furnishingItemsConstant())
             amenitiesProp[1](amenitiesConstants())
@@ -337,19 +336,14 @@ const MainForm = (props) => {
                 return value;
             }
         };
-        console.log(propertyFormFields, furnishingItemsProp[0], otherRoomsProp[0],
-            amenitiesProp[0], moreAmenitiesProp[0], "PROPERTY FORM FIELDS")
         var formData = jsonFormData(propertyFormFields, options);
         for (var pair of formData.entries()) {
-            //console.log(pair[0]+ ', ' + pair[1]); 
         }
         return formData
     }
 
     const formSubmitHandler = () => {
-        console.log(basicDetailsValidProp[0], locationValidProp[0], propertyDetailsValidProp[0], pricingValidProp[0], featuresValidProp[0])
-        if(basicDetailsValidProp[0] && locationValidProp[0] && propertyDetailsValidProp[0] && pricingValidProp[0] && featuresValidProp[0]){         
-            //axios.post('/properties', propertyFormFields).then(res => console.log(res))
+        if(basicDetailsValidProp[0] && locationValidProp[0] && propertyDetailsValidProp[0] && pricingValidProp[0] && featuresValidProp[0]){
             if(!!authenticatedUser && Object.keys(authenticatedUser).length === 0){
                 setPortalOpen(true)
                 setPortalMessage("You are not logged in. Please Sign In to post property.")

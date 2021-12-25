@@ -6,7 +6,8 @@ import 'semantic-ui-css/semantic.min.css'
 import "./index.css"
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://13.126.99.67:8080'
+axios.defaults.baseURL = 'https://squarefeet-backend.herokuapp.com/'
+//axios.defaults.baseURL = "http://3.109.4.66:8080"
 
 ReactDOM.render(
   <React.StrictMode>

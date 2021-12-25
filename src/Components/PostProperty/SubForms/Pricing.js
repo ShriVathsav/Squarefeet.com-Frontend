@@ -46,10 +46,6 @@ const Pricing = (props) => {
     const [expectedRent, setExpectedRent] = expectedRentProp
     const [rentNegotiable, setRentNegotiable] = rentNegotiableProp
     const [brokerageNegotiable, setBrokerageNegotiable] = brokerageNegotiableProp
-
-    useEffect(() => console.log(ownerShip, expectedPrice, allPricesInclusive, priceNegotiable,
-        bookingAdvance, maintenanceCharges, expectedRental));
-
     
     const formValid = () => {
         let valid;
@@ -64,10 +60,6 @@ const Pricing = (props) => {
     }
 
     useEffect(() => formValid())
-
-    useEffect(() => {
-        console.log(expectedPrice)
-    })
 
     return(
         <Form>

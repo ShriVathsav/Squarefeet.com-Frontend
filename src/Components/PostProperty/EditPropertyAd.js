@@ -56,7 +56,6 @@ const EditPropertyAd = (props) => {
     }
 
     const getPresignedUrls = async(image) => {
-        console.log(image, "PRINTING IMAGE FOR WHICH PRESIGNED URL IS GEN")
         return new Promise((resolve,reject) => {
             const myBucket2 = s3Bucket
             const myKey = image
@@ -118,7 +117,7 @@ const EditPropertyAd = (props) => {
     useEffect(() => {
         setLoading(true)
         axios.get(`/properties/${props.match.params.id}`).then(res => {
-            console.log(res.data, "PRINTING PROPERTY DISPLAYH RESPONSE")
+            console.log(res.data)
             prepareAndSetProperty(res.data)
             setLoading(false)
         }).catch(err => {

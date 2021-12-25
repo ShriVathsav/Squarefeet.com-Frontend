@@ -140,15 +140,12 @@ const PropertyCard = (props) => {
         {id: 11, icon: floors, label: "Floors Allowed", value: jsxGenerator.floorsAllowedJsx, belongsTo: ["Land", "Sale"]},
     ]
 
-    useEffect(() => console.log(property, "PROPERTY"))
-
     useEffect(() => {
         (async() => {
             const localImageList = []
             if(property.photos_list){
                 for (let image of JSON.parse(property.photos_list)) {
                     const signedUrl = await getPresignedUrls(image)
-                    console.log(signedUrl, "SIGNED URL BOOK DISPLAY")
                     localImageList.push(signedUrl)
                 }   
             }
@@ -157,8 +154,6 @@ const PropertyCard = (props) => {
     }, [])
 
     const getPresignedUrls = async(image) => {
-        //const s3 = new AWS.S3()
-        console.log(image, "PRINTING IMAGE FOR WHICH PRESIGNED URL IS GEN")
         return new Promise((resolve,reject) => {
             const bucketName = s3Bucket
             const myKey = image

@@ -198,7 +198,7 @@ const Filters = (props) => {
             </Menu.Item>
             <div className="menu-subitem">
                 {propertyTypeFilter.map((item, ind) => 
-                <Label as='a' onClick={() => alterFilterState(ind, propertyTypeFilterProp)}
+                <Label as='a' onClick={() => alterFilterState(ind, propertyTypeFilterProp)} key={ind}
                     size="large" color={item.active && 'blue'} style={{margin: 4, borderRadius: "2em"}}>{item.name}</Label>
                 )}
             </div>

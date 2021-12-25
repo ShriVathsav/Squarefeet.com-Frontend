@@ -9,7 +9,6 @@ const ERROR_MESSAGE_INPUT = "This field is mandatory"
 const ERROR_MESSAGE_DROPDOWN = "Please select a value"
 
 const google = window.google
-console.log(google)
 
 let map
 let marker
@@ -63,7 +62,6 @@ const Location = (props) => {
 
             autoComplete.addListener("place_changed", () => {
                 let place = autoComplete.getPlace()
-                console.log(place)
                 setAddress(place)
 
                 //showUserLocationOnMap(place.geometry.location.lat(), place.geometry.location.lng())
@@ -121,10 +119,10 @@ const Location = (props) => {
                     setError(true)
                     setPortalOpen(true)
                 } else {
-                    console.log(res.data.results[0])
+                    //console.log(res.data.results[0])
                     setAddress(res.data.results[0].formatted_address)
                     //console.log(inputRef.current.value)
-                    console.log(res.data.results[0].formatted_address)
+                    //console.log(res.data.results[0].formatted_address)
                     inputRef.current.value = res.data.results[0].formatted_address
                     //document.getElementById("autocomplete").focus()
                     let addressItems = {
@@ -138,13 +136,13 @@ const Location = (props) => {
                         postalCode: ""
                     }
                     res.data.results[0].address_components.map(item => {
-                        console.log(item.types)
+                        //console.log(item.types)
                         if(item.types.includes("sublocality_level_1")){
                             addressItems.locality = item.short_name
                         } else if(item.types.includes("locality")){
                             addressItems.administrativeArea = item.short_name
                         } else if(item.types.includes("sublocality") && !item.types.includes("sublocality_level_1")){
-                            console.log(item.short_name)
+                            //console.log(item.short_name)
                             if(addressItems.sublocality === ""){
                                 addressItems.sublocality = item.short_name
                             } else {
@@ -182,11 +180,8 @@ const Location = (props) => {
         if(latitude !== "" && longitude !== ""){
             coordinatesToAddress(latitude, longitude)
             showUserLocationOnMap(latitude, longitude)
-            console.log("EXECUTING WHEN CHANFGE")
         }        
     }, [latitude, longitude])
-
-    useEffect(() => console.log(address, "PRINTING ADDRESS"))
 
     const getLocation = () => {
         if(navigator.geolocation){
@@ -196,8 +191,7 @@ const Location = (props) => {
                 setLatitude(lat)
                 setLongitude(lng)
                 //coordinatesToAddress(lat, lng)
-                //showUserLocationOnMap(lat, lng)
-                console.log(lat, lng)                
+                //showUserLocationOnMap(lat, lng)                             
             },
             err => {
                 console.log(err.message)
@@ -205,7 +199,7 @@ const Location = (props) => {
             })
         }
         else{
-            console.log("BROWSER DOESNT SUPPOI")
+            console.log("BROWSER DOESNT SUPPORT")
             setPortalOpen(true)
         }
     }

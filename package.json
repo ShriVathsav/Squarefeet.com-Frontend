@@ -5,7 +5,7 @@
   "engines": {
     "node": "14.7.0"
   },
-  "proxy": "http://13.126.99.67:8080",
+  "proxy": "http://squarefeet-backend.herokuapp.com/",
   "dependencies": {
     "aws-sdk": "^2.1048.0",
     "axios": "^0.19.2",

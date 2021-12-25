@@ -32,8 +32,6 @@ const DisplayDetails = (props) => {
 
     const {activeMenuProps, propertyDetailsHeightProps, featuresHeightProps, locationDetailsHeightProps, ownerDetailsHeightProps} = useContext(PropertyDisplayContext)
 
-    useEffect(() => console.log(headerHeight, "HEADER HEIGHT"))
-
     const heightProps = {        
         activeMenuProps, propertyDetailsHeightProps ,featuresHeightProps ,locationDetailsHeightProps, ownerDetailsHeightProps
     }
@@ -43,25 +41,17 @@ const DisplayDetails = (props) => {
         masterSegment = document.getElementById("master-segment")
     }, [])
 
-    useEffect(() => console.log(propertyDetailsHeightProps[0] ,featuresHeightProps[0] ,locationDetailsHeightProps[0], ownerDetailsHeightProps[0]))
-
     const getHeader = () => propsPassed.headerHeightProps
 
     const getHash = () => {
-        console.log(headerHeight, getHeader(), "PRINTING HEADER HEIGHT")
         const offset = Math.abs(masterSegment.getBoundingClientRect().top - (headerHeight + 68 + 14))
-        console.log(propertyDetailsHeightProps[0], offset)
         if(offset >= 0 && offset <= propertyDetailsHeightProps[0] + 28){
-            console.log("PROPERTY DETAILS HASH INC")
             setActiveMenu("PropertyDetails")
-        } else if(offset > propertyDetailsHeightProps[0] + 28 && offset <= propertyDetailsHeightProps[0] + 28 + featuresHeightProps[0] + 56){
-            console.log("features DETAILS HASH INC")
+        } else if(offset > propertyDetailsHeightProps[0] + 28 && offset <= propertyDetailsHeightProps[0] + 28 + featuresHeightProps[0] + 56){            
             setActiveMenu("Features")
         } else if(offset > propertyDetailsHeightProps[0] + 28 + featuresHeightProps[0] + 56 && offset <= propertyDetailsHeightProps[0] + 28 + featuresHeightProps[0] + 56 + locationDetailsHeightProps[0] + 56){
-            console.log("location DETAILS HASH INC")
             setActiveMenu("LocationDetails")
         } else if(offset > propertyDetailsHeightProps[0] + 28 + featuresHeightProps[0] + 56 + locationDetailsHeightProps[0] + 56 && offset <= propertyDetailsHeightProps[0] + 28 + featuresHeightProps[0] + 56 + locationDetailsHeightProps[0] + 56 + ownerDetailsHeightProps[0] + 28){
-            console.log("owner DETAILS HASH INC")
             setActiveMenu("OwnerDetails")
         }
     }

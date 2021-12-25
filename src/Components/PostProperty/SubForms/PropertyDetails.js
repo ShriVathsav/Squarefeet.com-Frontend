@@ -118,15 +118,11 @@ const PropertyDetails = (props) => {
     const [areaUnit, setAreaUnit] = areaUnitProp;
     const [propertyDetailsValid, setPropertyDetailsValid] = propertyDetailsValidProp;
 
-    //useEffect(() => console.log(superBuiltUpArea, builtUpArea, carpetArea, bedrooms, bathrooms, balconies, otherRooms,
-      //  furnishingDet, totalFloor, propertyOnFloor, reservedParking, closedParking, openParking, propertyAge));
-
     const furnishingItemsValid = () => {
         let count = 0
         for (const item of furnishingItems){
             if(item.active === true){
                 count += 1
-                console.log(count, "count")
             }
         }
         if(furnishingDet === 0){
@@ -163,17 +159,12 @@ const PropertyDetails = (props) => {
         setPropertyDetailsValid(valid)
     }
 
-    useEffect(() => console.log(availability, typeof availability, "PROPERTY DETAILS VALID"))
-
     const calculateFloors = (max, floors = []) => {
         for (let i = 0; i <= max; i++) {
             floors.push({ key: i, text: i, value: i.toString() })
         }
         return floors;
     }
-
-    useEffect(() => console.log(builtUpArea, !superBuiltUpArea, superBuiltUpArea))
-
 
     const addOrRemoveFurnishings = (entity, value = 0) => {
         setFurnishingItems(prev => {
@@ -187,9 +178,7 @@ const PropertyDetails = (props) => {
                 return (item.id !== entity.id) ? {...item} : {...item, ...val}
             })            
         })
-    }
-
-    useEffect(() => console.log(furnishingItems, furnishingDet, typeof furnishingDet), [furnishingItems])
+    }    
 
     useEffect(() => {
         setTotalFloorList(calculateFloors(40));
@@ -341,7 +330,7 @@ const PropertyDetails = (props) => {
                             <Form.Field>
                                 <label>Add other rooms</label>
                                 <Dropdown placeholder='Add other rooms' fluid multiple selection options={addOtherRooms}
-                                    value={otherRooms} onChange={(event, data) => {console.log(data);setOtherRooms(data.value);}}
+                                    value={otherRooms} onChange={(_, data) => setOtherRooms(data.value)}
                                 />
                             </Form.Field>
                         </Grid.Column>

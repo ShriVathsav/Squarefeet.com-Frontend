@@ -49,7 +49,6 @@ const PropertyDisplay = (props) => {
         if(property.photos_list){
             for (let image of JSON.parse(property.photos_list)) {
                 const signedUrl = await getPresignedUrls(image)
-                console.log(signedUrl, "SIGNED URL BOOK DISPLAY")
                 localImageList.push(signedUrl)
             }   
         }
@@ -58,7 +57,6 @@ const PropertyDisplay = (props) => {
 
     const getPresignedUrls = async(image) => {
         //const s3 = new AWS.S3()
-        console.log(image, "PRINTING IMAGE FOR WHICH PRESIGNED URL IS GEN")
         return new Promise((resolve,reject) => {
             const bucketName = s3Bucket
             const myKey = image

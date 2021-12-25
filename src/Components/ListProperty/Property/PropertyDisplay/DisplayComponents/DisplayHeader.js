@@ -30,10 +30,7 @@ const DisplayHeader = (props) => {
 
     useEffect(() => setHeaderHeight(masterHeader.offsetHeight), [screenWidth])
 
-    useEffect(() => console.log(headerHeight, 'HEADER HEIGHT'), [headerHeight])
-
     const stack = () => {
-        console.log("screen width", screenWidth)
         return screenWidth <= 767 ? true : false
         //return (window.matchMedia("(max-width: 767px)").matches) ? true : false
     } 

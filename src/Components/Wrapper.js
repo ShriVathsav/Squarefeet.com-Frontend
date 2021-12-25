@@ -35,8 +35,6 @@ const Wrapper = () => {
         return () => window.removeEventListener("resize", func)    
     }, [])
 
-    useEffect(() => console.log(screenWidth))
-
     return (   
         <div id="App">
             <Layout/>
