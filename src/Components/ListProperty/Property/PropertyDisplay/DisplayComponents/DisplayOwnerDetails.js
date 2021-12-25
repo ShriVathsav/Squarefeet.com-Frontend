@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useContext} from 'react';
 import { Segment, Header, Button, Table, Image, Grid, Divider } from 'semantic-ui-react';
 import Authentication from "../../../../Authentication/Authentication"
-import { ViewContext } from '../../../../ViewContext';
+import { Context } from '../../../../../context/Context';
 import userIcon from "../../../../ColorIcons/userIcon-2.svg"
 import loginIcon from "../../../../../static/Icons/GeneralIcons/loginIcon.svg"
 import axios from 'axios';
@@ -10,7 +10,7 @@ let ownerDetailsDiv
 
 const DisplayOwnerDetails = (props) => {
 
-    const {authenticatedUserProps} = useContext(ViewContext)
+    const {authenticatedUserProps} = useContext(Context)
     const [authenticatedUser, setAuthenticatedUser] = authenticatedUserProps
     const {screenWidth, property} = props
     const [postedUser, setPostedUser] = useState({})

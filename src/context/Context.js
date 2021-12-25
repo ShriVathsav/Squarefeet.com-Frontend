@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import axios from "axios"
 
 import {propertyTypeFilterList, amenitiesFilterList, constructionStatusFilter, 
-    configurationFilterList, postedByFilterList, furnishingFilterList} from "./Utility/Constants"
+    configurationFilterList, postedByFilterList, furnishingFilterList} from "../Components/Utility/Constants"
 
 export const Context = React.createContext({
     propertyListProps: [],

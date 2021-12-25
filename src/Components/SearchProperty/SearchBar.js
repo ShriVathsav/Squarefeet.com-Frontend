@@ -5,16 +5,16 @@ import {priceOptions, rentOptions} from "../Utility/BudgetListCalculate"
 
 import SearchFilters from "./SearchFilters"
 import SearchInput from "./SearchInput"
-import {AppContext} from "../AppContext"
+import {Context} from "../../context/Context"
 
 const SearchBar = (props) => {
 
-    const appContext = useContext(AppContext)
+    const context = useContext(Context)
 
     const {
         localityProps, cityProps, bedroomFilterProp, propertyTypeFilterProp, postedByFilterProp, 
         minPriceFilterProp, maxPriceFilterProp, minRentFilterProp, maxRentFilterProp
-    } = appContext
+    } = context
 
     const activeMenuProps = useState('Sale')
     const [activeMenu, setActiveMenu] = activeMenuProps

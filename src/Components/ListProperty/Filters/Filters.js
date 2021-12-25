@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react'
 import { Menu, Header, Icon, Label, Dropdown, Grid, Button } from 'semantic-ui-react'
-import {AppContext} from '../../AppContext'
+import {Context} from '../../../context/Context'
 import {propertyTypeFilterList, amenitiesFilterList, constructionStatusFilter, 
     configurationFilterList, postedByFilterList, furnishingFilterList} from "../../Utility/Constants"
 import {priceOptions, rentOptions, areaOptions} from '../../Utility/BudgetListCalculate'
 
 let time, prices;
 const Filters = (props) => {
-    const propertyContext = useContext(AppContext)    
+    const propertyContext = useContext(Context)    
 
     const {
         propertyForProps, bedroomFilterProp, propertyTypeFilterProp, postedByFilterProp, propertyStatusFilterProp, 

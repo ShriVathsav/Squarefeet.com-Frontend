@@ -6,11 +6,10 @@ import DisplayLocationDetails from './DisplayComponents/DisplayLocationDetails';
 import DisplayOwnerDetails from './DisplayComponents/DisplayOwnerDetails';
 import ImageViewer from './DisplayComponents/ImageViewer';
 import axios from 'axios'
-import {ViewContext} from '../../../ViewContext'
+import {Context} from '../../../../context/Context'
 import editPropertyIcon from '../../../../static/Icons/GeneralIcons/editPropertyIcon.svg'
 import deletePropertyIcon from '../../../../static/Icons/GeneralIcons/deletePropertyIcon.svg'
 import propertySoldIcon1 from '../../../../static/Icons/GeneralIcons/propertySoldIcon1.svg'
-import {PropertyDisplayContext} from '../../../PropertyDisplayContext'
 import "./DisplayDetails.css"
 import {Link} from "react-router-dom"
 
@@ -24,13 +23,12 @@ const DisplayDetails = (props) => {
     const properType = property.property_type
     const [headerHeight, setHeaderHeight] = propsPassed.headerHeightProps
 
-    const {screenWidthProps, authenticatedUserProps} = useContext(ViewContext)
+    const {screenWidthProps, authenticatedUserProps, activeMenuProps, propertyDetailsHeightProps, 
+        featuresHeightProps, locationDetailsHeightProps, ownerDetailsHeightProps} = useContext(Context)
     const [authenticatedUser, setAuthenticatedUser] = authenticatedUserProps
     const [archiveLoading, setArchiveLoading] = useState(false)
     const [markAsSoldLoading, setMarkAsSoldLoading] = useState(false)
-    const screenWidth = screenWidthProps[0]
-
-    const {activeMenuProps, propertyDetailsHeightProps, featuresHeightProps, locationDetailsHeightProps, ownerDetailsHeightProps} = useContext(PropertyDisplayContext)
+    const screenWidth = screenWidthProps[0]    
 
     const heightProps = {        
         activeMenuProps, propertyDetailsHeightProps ,featuresHeightProps ,locationDetailsHeightProps, ownerDetailsHeightProps

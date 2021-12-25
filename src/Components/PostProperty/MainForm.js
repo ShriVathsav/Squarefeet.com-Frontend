@@ -2,7 +2,7 @@ import React,{useState, Fragment, useEffect, useContext} from 'react';
 import { Image, Button} from 'semantic-ui-react'
 import PortalMain from "../UI/PortalMain"
 
-import {ViewContext} from "../ViewContext"
+import {Context} from "../../context/Context"
 
 import axios from 'axios'
 
@@ -25,7 +25,7 @@ const MainForm = (props) => {
 
     const property = props.property || {}
 
-    const {authenticatedUserProps} = useContext(ViewContext)
+    const {authenticatedUserProps} = useContext(Context)
     const [authenticatedUser, setAuthenticatedUser] = authenticatedUserProps
     const [open, setOpen] = useState(false)
 

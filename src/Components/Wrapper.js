@@ -11,16 +11,14 @@ import ListProperty from "./ListProperty/ListProperty";
 import DisplayPage from "./SearchProperty/DisplayPage"
 import PropertyDisplay from './ListProperty/Property/PropertyDisplay/PropertyDisplay';
 import Profile from "./Profile/Profile"
-import AppContextProvider from "./AppContext"
-import {ViewContext} from "./ViewContext"
-import PropertyDisplayContextProvider from "./PropertyDisplayContext"
+import {Context} from "../context/Context"
 import Footer from "./UI/Footer"
 import Error404Page from "./UI/Error404Page"
 
 let timer
 
 const Wrapper = () => {
-    const {screenWidthProps} = useContext(ViewContext) 
+    const {screenWidthProps} = useContext(Context) 
     const [screenWidth, setScreenWidth] = screenWidthProps
 
     useEffect(() => {
@@ -40,21 +38,15 @@ const Wrapper = () => {
             <Layout/>
             <div id="main" style={{marginTop: 82}}>
                 <Container>
-                    <Route path="/post-property" ><CreatePropertyAd/></Route>
-                    <Route path="/editProperty/:id" component={EditPropertyAd} />
-                    <Route path="/profile" component={Profile} />
-                </Container>
-                <AppContextProvider>
-                    <Container>
+                    <Switch>
+                        <Route path="/post-property" ><CreatePropertyAd/></Route>
+                        <Route path="/editProperty/:id" component={EditPropertyAd} />
+                        <Route path="/profile" component={Profile} />
                         <Route path="/list-properties/:city" component={ListProperty} />
                         <Route path="/" exact component={DisplayPage} />
-                    </Container> 
-                    <PropertyDisplayContextProvider>
                         <Route path="/property-display/:id" component={PropertyDisplay} />
-                    </PropertyDisplayContextProvider>
-                </AppContextProvider>
-                <Container>
-                    <Route path="/404page" exact component={Error404Page} />
+                        <Route component={Error404Page} />
+                    </Switch>                 
                 </Container>
             </div>
             <Footer />

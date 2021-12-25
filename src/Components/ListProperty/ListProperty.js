@@ -2,7 +2,7 @@ import React, {useState, Fragment, useEffect, useContext} from 'react';
 import { Grid, Button, Segment, Image, Modal, Icon } from 'semantic-ui-react';
 import PropertyCard from "./Property/PropertyCard";
 import Filters from "./Filters/Filters";
-import {AppContext} from '../AppContext'
+import {Context} from '../../context/Context'
 import PaginationItem from "../UI/PaginationItem"
 import {Link} from 'react-router-dom'
 
@@ -23,7 +23,7 @@ let propertyCountVar
 
 const ListProperty = (props) => {
 
-    const propertyContext = useContext(AppContext)
+    const propertyContext = useContext(Context)
         
     const {
         propertyListProps, filteredPropertyListProps, propertyForProps, localityProps, cityProps, bedroomFilterProp,

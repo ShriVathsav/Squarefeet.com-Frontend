@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 import Authentication from "../Authentication/Authentication"
 import "./SideDrawer.css"
 import BackDrop from "./BackDrop"
-import {ViewContext} from "../ViewContext"
+import {Context} from "../../context/Context"
 import PortalMain from "./PortalMain"
 import viewIcon from "../../static/Icons/GeneralIcons/viewPropertyIcon.svg"
 import loginIcon from "../../static/Icons/GeneralIcons/loginIcon.svg"
@@ -15,7 +15,7 @@ import postPropertyIcon from "../../static/Icons/GeneralIcons/postPropertyIcon.s
 
 const SideDrawer = (props) => {
 
-    const {authenticatedUserProps} = useContext(ViewContext)
+    const {authenticatedUserProps} = useContext(Context)
     const [authenticatedUser, setAuthenticatedUser] = authenticatedUserProps
     
     const portalOpenProps = useState(false)

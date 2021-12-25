@@ -2,12 +2,12 @@ import React, {useState, useContext} from 'react';
 import {Link} from "react-router-dom"
 import {Grid, Menu} from 'semantic-ui-react'
 import { HashLink } from 'react-router-hash-link'
-import {PropertyDisplayContext} from "../../../../PropertyDisplayContext"
+import {Context} from "../../../../../context/Context"
 
 const MenuTab = (props) => {
 
     const {activeMenuProps, propertyDetailsHeightProps, featuresHeightProps, locationDetailsHeightProps, 
-        ownerDetailsHeightProps} = useContext(PropertyDisplayContext)
+        ownerDetailsHeightProps} = useContext(Context)
 
     const [activeMenu, setActiveMenu] = activeMenuProps
 

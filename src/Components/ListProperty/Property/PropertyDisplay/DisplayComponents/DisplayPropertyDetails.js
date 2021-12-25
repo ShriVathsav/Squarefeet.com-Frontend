@@ -7,7 +7,7 @@ import DisplayLocationDetails from "./DisplayLocationDetails"
 import {transactionTypeConstant, furnishingFilterList, subPropertyTypeConstant, generateSuperScript} from "../../../../Utility/Constants"
 
 import {propertyDisplayConvert} from "../../../../Utility/NumberConverter"
-import {AppContext} from "../../../../AppContext"
+import {Context} from "../../../../../context/Context"
 
 import builtupArea from '../../../../ColorIcons/builtupArea.svg';
 import openSides from '../../../../ColorIcons/openSides.svg';
@@ -55,7 +55,7 @@ let propertyDetailsDiv
 const DisplayPropertyDetails = (props) => {
 
     const {property, shortListProps, imageListProps} = props
-    const {unitSelectedProps} = useContext(AppContext)
+    const {unitSelectedProps} = useContext(Context)
     const [areaUnit, setAreaUnit] = unitSelectedProps
     //const [loading, setLoading] = props.loadingProps    
     const [shortList, setShortList] = shortListProps

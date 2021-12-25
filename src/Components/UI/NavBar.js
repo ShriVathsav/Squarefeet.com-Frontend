@@ -8,7 +8,7 @@ import SideDrawer from "./SideDrawer"
 import hamburgerMenu from "../ColorIcons/hamburgerMenu.svg"
 import "./NavBar.css"
 import userIcon from "../ColorIcons/userIcon-2.svg"
-import {ViewContext} from "../ViewContext"
+import {Context} from "../../context/Context"
 import PortalMain from "./PortalMain"
 import postPropertyIcon from "../../static/Icons/GeneralIcons/postPropertyIcon.svg"
 import searchPropertyIcon from "../../static/Icons/GeneralIcons/searchPropertyIcon.svg"
@@ -20,7 +20,7 @@ const NavBar = (props) => {
     const portalOpenProps = useState(false)
     const [portalOpen, setPortalOpen] = portalOpenProps
 
-    const {authenticatedUserProps} = useContext(ViewContext)
+    const {authenticatedUserProps} = useContext(Context)
     const [authenticatedUser, setAuthenticatedUser] = authenticatedUserProps
     
     const [sideBarOpen, setSideBarOpen] = props.sideBarOpenProps

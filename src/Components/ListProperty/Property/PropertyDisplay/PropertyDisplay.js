@@ -4,8 +4,7 @@ import DisplayHeader from './DisplayComponents/DisplayHeader';
 import DisplayDetails from "./DisplayDetails";
 import ImageViewer from './DisplayComponents/ImageViewer';
 import axios from 'axios'
-import {PropertyDisplayContext} from "../../../PropertyDisplayContext"
-import {AppContext} from "../../../AppContext"
+import {Context} from "../../../../context/Context"
 import FullPageLoader from "../../../UI/FullPageLoader"
 import InfoPageButton from "../../../UI/InfoPages/InfoPageButton"
 import pageNotExist1 from "../../../../static/Icons/GeneralIcons/pageNotExistIcon1.svg"
@@ -31,8 +30,7 @@ let timer
 
 const PropertyDisplay = (props) => {
 
-    const propertyDisplayContext = useContext(PropertyDisplayContext)
-    const {unitSelectedProps} = useContext(AppContext)
+    const {unitSelectedProps} = useContext(Context)
 
     const propertyProp = useState(null)
     const [property, setProperty] = propertyProp

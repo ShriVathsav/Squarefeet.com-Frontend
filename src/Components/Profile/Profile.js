@@ -6,7 +6,7 @@ import postPropertyIcon from "../../static/Icons/GeneralIcons/postPropertyIcon.s
 import loginIcon from "../../static/Icons/GeneralIcons/loginIcon.svg"
 import {Link} from 'react-router-dom'
 import EditProfile from "./EditProfile"
-import {ViewContext} from "../ViewContext"
+import {Context} from "../../context/Context"
 import Authentication from "../Authentication/Authentication"
 import InfoPageButton from "../UI/InfoPages/InfoPageButton"
 import "./Profile.css"
@@ -16,7 +16,7 @@ import PropertyCard from "../ListProperty/Property/PropertyCard"
 
 const Profile = (props) => {
 
-    const {authenticatedUserProps} = useContext(ViewContext)
+    const {authenticatedUserProps} = useContext(Context)
     const [authenticatedUser, setAuthenticatedUser] = authenticatedUserProps
 
     const [viewPropertyPosted, setViewPropertyPosted] = useState(false)

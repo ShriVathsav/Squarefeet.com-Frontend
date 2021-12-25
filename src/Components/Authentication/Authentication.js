@@ -6,7 +6,7 @@ import Login from "./Login"
 import Register from "./Register"
 import "./Authentication.css"
 import axios from "axios"
-import {ViewContext} from "../ViewContext"
+import {Context} from "../../context/Context"
 
 const validateEmail = (email) => {
     return new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(email)
@@ -14,7 +14,7 @@ const validateEmail = (email) => {
 
 const Authentication = (props) => {
     
-    const {authenticatedUserProps} = useContext(ViewContext)
+    const {authenticatedUserProps} = useContext(Context)
     const [authenticatedUser, setAuthenticatedUser] = authenticatedUserProps
     
     const [open, setOpen] = useState(false)
